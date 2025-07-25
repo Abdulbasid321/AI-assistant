@@ -81,7 +81,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
-git 
 // import your route modules
 const studentRoutes    = require('./src/routes/student.routes');
 const admintRoutes     = require('./src/routes/admin.routes');
