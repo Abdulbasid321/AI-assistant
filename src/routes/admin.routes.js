@@ -20,66 +20,6 @@ router.get('/all', adminController.getAllAdmins);
 
 router.get('/profile', verifyAdminToken, getCurrentAdminProfile);
 
-// Get a specific admin by ID
-// router.get('/:adminId', adminController.getAdmin);
-
-// // Update an admin by ID
-// router.put('/:adminId', adminController.updateAdmin);
-
-// // Delete an admin by ID
-// router.delete('/:adminId', adminController.deleteAdmin);
-
-
-// POST /admin/upload
-// Upload a single lesson video with title and note
-// router.post("/upload", upload.single("video"), async (req, res) => {
-//   try {
-//     const file = req.file;
-//     const { title, note } = req.body;
-
-//     if (!file) {
-//       return res.status(400).json({ error: "No video file uploaded" });
-//     }
-
-//     if (!title || !note) {
-//       return res.status(400).json({ error: "Title and note are required" });
-//     }
-
-//     const safeTitle = title.replace(/[^a-zA-Z0-9]/g, "");
-
-//     const uploadResult = await new Promise((resolve, reject) => {
-//       cloudinary.uploader.upload_stream(
-//         {
-//           resource_type: "video",
-//           public_id: `video_lessons/${safeTitle}_${file.originalname}`,
-//           timeout: 120000,
-//         },
-//         (error, result) => {
-//           if (error) return reject(error);
-//           resolve(result);
-//         }
-//       ).end(file.buffer);
-//     });
-
-//     const newLesson = new Lesson({
-//       title,
-//       note,
-//       videoUrl: uploadResult.secure_url,
-//       publicId: uploadResult.public_id,
-//     });
-
-//     await newLesson.save();
-
-//     res.status(201).json({
-//       message: "Lesson uploaded successfully",
-//       lesson: newLesson,
-//     });
-
-//   } catch (err) {
-//     console.error("Upload error:", err);
-//     res.status(500).json({ error: err.message });
-//   }
-// });
 
 router.post('/upload', upload.single('video'), async (req, res) => {
   try {
@@ -138,7 +78,7 @@ router.get('/:adminId', adminController.getAdmin);
 router.put('/:adminId', adminController.updateAdmin);
 
 // Delete an admin by ID
-router.delete('/:adminId', adminController.deleteAdmin);
+// router.delete('/:adminId', adminController.deleteAdmin);
 
 
 module.exports = router;

@@ -18,25 +18,12 @@ const adminSchema = new mongoose.Schema({
   }
 });
 
-// Encrypt password before saving
-// adminSchema.pre('save', async function (next) {
-//   if (this.isModified('password')) {
-//     this.password = await bcrypt.hash(this.password, 10);
-//   }
-//   next();
-// });
 
 adminSchema.pre('save', async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt)
   next()
 });
-
-
-// Method to compare password for login
-// adminSchema.methods.comparePassword = async function (password) {
-//   return bcrypt.compare(password, this.password);
-// };
 
 
 adminSchema.statics.login = async function (email, password) {
